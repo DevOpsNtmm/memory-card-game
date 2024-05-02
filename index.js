@@ -1,19 +1,15 @@
 const gridContainer = document.querySelector(".grid-container");
-//let cards = [];
+// cards
 let firstCard, secondCard;
 let lockBoard = false;
 let score = 0;
+// Timer
+let timerInterval;
+let seconds = 0;
+let minutes = 0;
+let hours = 0;
 
 document.querySelector(".score").textContent = score;
- /*
-fetch("./data/cards.json")
-  .then((res) => res.json())
-  .then((data) => {
-    cards = [...data, ...data];
-    shuffleCards();
-    generateCards();
-  });
-  */
   const cards = [
     {
         "image": "images/chili.png",
@@ -71,8 +67,7 @@ function shuffleCards() {
 
 
 function generateCards() {
-  // const doubleCards = cards.concat(cards);
-  for (let card of cards.concat(cards)) {
+  for (let card of cards.concat(cards)) { // Duplicate the cards
     const cardElement = document.createElement("div");
     cardElement.classList.add("card");
     cardElement.setAttribute("data-name", card.name);
@@ -140,4 +135,36 @@ function restart() {
   document.querySelector(".score").textContent = score;
   gridContainer.innerHTML = "";
   generateCards();
+  stopTimer();
+  startTimer();
+}
+ // Timer functions
+function startTimer() {
+    timerInterval = setInterval(updateTimer, 1000);
+}
+
+function stopTimer() {
+  clearInterval(timerInterval);
+  seconds = 0;
+  minutes = 0;
+  hours = 0;
+  updateTimer(); // Reset timer display
+}
+
+function updateTimer() {
+    seconds++;
+    if (seconds >= 60) {
+        seconds = 0;
+        minutes++;
+        if (minutes >= 60) {
+            minutes = 0;
+            hours++;
+        }
+    }
+    const formattedTime = pad(hours) + ":" + pad(minutes) + ":" + pad(seconds);
+    document.getElementById("timer").innerText = formattedTime;
+}
+
+function pad(num) {
+    return (num < 10) ? ("0" + num) : num;
 }

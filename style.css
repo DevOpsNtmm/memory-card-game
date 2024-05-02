@@ -83,3 +83,7 @@ p {
 .card .front {
   transform: rotateY(180deg);
 }
+
+.container { 
+  text-align: center;
+}
