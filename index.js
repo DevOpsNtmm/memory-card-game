@@ -69,8 +69,10 @@ function shuffleCards() {
   }
 }
 
+
 function generateCards() {
-  for (let card of cards) {
+  // const doubleCards = cards.concat(cards);
+  for (let card of cards.concat(cards)) {
     const cardElement = document.createElement("div");
     cardElement.classList.add("card");
     cardElement.setAttribute("data-name", card.name);
