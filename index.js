@@ -1,11 +1,11 @@
 const gridContainer = document.querySelector(".grid-container");
-let cards = [];
+//let cards = [];
 let firstCard, secondCard;
 let lockBoard = false;
 let score = 0;
 
 document.querySelector(".score").textContent = score;
-
+ /*
 fetch("./data/cards.json")
   .then((res) => res.json())
   .then((data) => {
@@ -13,6 +13,48 @@ fetch("./data/cards.json")
     shuffleCards();
     generateCards();
   });
+  */
+  const cards = [
+    {
+        "image": "images/chili.png",
+        "name": "chili"
+    },
+    {
+        "image": "images/grapes.png",
+        "name": "grapes"
+    },
+    {
+        "image": "images/lemon.png",
+        "name": "lemon"
+    },
+    {
+        "image": "images/orange.png",
+        "name": "orange"
+    },
+    {
+        "image": "images/pineapple.png",
+        "name": "pineapple"
+    },
+    {
+        "image": "images/strawberry.png",
+        "name": "strawberry"
+    },
+    {
+        "image": "images/tomato.png",
+        "name": "tomato"
+    },
+    {
+        "image": "images/watermelon.png",
+        "name": "watermelon"
+    },
+    {
+        "image": "images/cherries.png",
+        "name": "cherries"
+    }
+];
+
+console.log(cards.length)
+
 
 function shuffleCards() {
   let currentIndex = cards.length,
