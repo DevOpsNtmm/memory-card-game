@@ -21,10 +21,12 @@ function getParameterByName(name, url) {
 }
 
 const username = getParameterByName('username');
-const PairsNum = getParameterByName('cardPairs');
+const pairsNum = getParameterByName('cardPairs');
+
+console.log(username, pairsNum)
 
 document.getElementById('welcomeMessage').innerText = 'Welcome, ' + username + '!';
-document.getElementById('cardPairsMessage').innerText = 'You have chosen ' + PairsNum + ' pairs of cards.';
+document.getElementById('cardPairsMessage').innerText = 'You have chosen ' + pairsNum + ' pairs of cards.';
 
   const cards = [
     {
@@ -108,6 +110,8 @@ function flipCard() {
   }
 
   secondCard = this;
+  score++;
+  document.querySelector(".score").textContent = score;
   lockBoard = true;
   checkForMatch();
 }
@@ -127,7 +131,7 @@ function disableCards() {
   pairsNum -= 1;
   if (pairsNum == 0) {
     const formattedTime = pad(hours) + ":" + pad(minutes) + ":" + pad(seconds);
-    setTimeout(gameOver("Gal", score, formattedTime), 1000);
+    setTimeout(gameOver(username, score, formattedTime), 1000);
   }
 }
 
@@ -187,7 +191,7 @@ function pad(num) {
 }
 
 function gameOver(username, score, time){
-
+  console.log("hi")
   // Base URL of the game over page
   const baseUrl = 'gameOver.html';
 
