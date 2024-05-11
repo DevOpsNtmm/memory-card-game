@@ -3,6 +3,13 @@ body {
   min-width: 100vh;
   background-color: #12181f;
   color: white;
+  font-family: Verdana;
+}
+
+h2 {
+  text-align: center;
+  font-weight: 700;
+  padding: 0
 }
 
 h1 {

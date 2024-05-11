@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Memory Card Game</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-  </head>
-  <body>
-    <h1>Memory Cards</h1>
-    <div class="container" id="timer">00:00:00</div>
-    <div class="grid-container">
-    </div>
-    <p>Score: <span class="score"></span></p>
-    <div class="actions">
-        <button onclick="restart()">Restart</button>
-    </div>
-    <script src="index.js"></script>
-  </body>
+	<head>
+		<meta charset="utf-8">
+		<title>We want to get to know you</title>
+		<link rel="stylesheet" type="text/css" href="login-style.css">
+	</head>
+	<body>
+		<div class="wrapper">
+			<img src="images/background.png" class="background-image" alt="background image">
+			<div class="inner">
+				<form name="loginForm" onsubmit="return validateForm()">
+					<h3>We want to get to know you :)</h3>
+					<label for="Name">Name</label>
+					<input type="text" name="username" placeholder="Please enter your name" class="form-control">
+					<label for="Card pairs">How many pairs of cards do you want?</label>
+					<input type="text" name="cardPairs" placeholder="Number of card pairs between 1-30" class="form-control">
+					<button type="submit" class="button">Submit</button>
+				</form>
+			</div>
+		</div>
+		<script src="login.js"></script>
+	</body>
 </html>

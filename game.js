@@ -2,7 +2,6 @@ const gridContainer = document.querySelector(".grid-container");
 // cards
 let firstCard, secondCard;
 let lockBoard = false;
-let pairsNum = 2;
 let score = 0;
 // Timer
 let timerInterval;
@@ -10,7 +9,23 @@ let seconds = 0;
 let minutes = 0;
 let hours = 0;
 
-document.querySelector(".score").textContent = score;
+// Get the username, cardPairs value from the URL
+function getParameterByName(name, url) {
+  if (!url) url = window.location.href;
+  name = name.replace(/[\[\]]/g, '\\$&');
+  var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+      results = regex.exec(url);
+  if (!results) return null;
+  if (!results[2]) return '';
+  return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
+const username = getParameterByName('username');
+const PairsNum = getParameterByName('cardPairs');
+
+document.getElementById('welcomeMessage').innerText = 'Welcome, ' + username + '!';
+document.getElementById('cardPairsMessage').innerText = 'You have chosen ' + PairsNum + ' pairs of cards.';
+
   const cards = [
     {
         "image": "images/chili.png",
@@ -50,9 +65,6 @@ document.querySelector(".score").textContent = score;
     //     "name": "cherries"
     // }
 ];
-
-console.log(cards.length)
-
 
 function shuffleCards() {
   let currentIndex = cards.length,
@@ -96,10 +108,7 @@ function flipCard() {
   }
 
   secondCard = this;
-  score++;
-  document.querySelector(".score").textContent = score;
   lockBoard = true;
-
   checkForMatch();
 }
 
