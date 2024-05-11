@@ -1,0 +1,42 @@
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Game Over</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <h1>Good Game Gal</h1>
+
+    <script src="index.js"></script>
+  </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Over</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <h1>Game Over!</h1>
+    <p id="userInfo"></p>
+    <script>
+        // Function to get URL query parameters
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        // Retrieve the data from the URL
+        const username = getQueryParam('username');
+        const score = getQueryParam('score');
+        const time = getQueryParam('time');
+
+        // Display the data on the page
+        document.getElementById('userInfo').innerHTML = `Username: ${username}, Score: ${score}, Time: ${time}`;
+    </script>
+</body>
+</html>

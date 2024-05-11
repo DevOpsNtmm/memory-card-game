@@ -2,6 +2,7 @@ const gridContainer = document.querySelector(".grid-container");
 // cards
 let firstCard, secondCard;
 let lockBoard = false;
+let pairsNum = 2;
 let score = 0;
 // Timer
 let timerInterval;
@@ -18,35 +19,36 @@ document.querySelector(".score").textContent = score;
     {
         "image": "images/grapes.png",
         "name": "grapes"
-    },
-    {
-        "image": "images/lemon.png",
-        "name": "lemon"
-    },
-    {
-        "image": "images/orange.png",
-        "name": "orange"
-    },
-    {
-        "image": "images/pineapple.png",
-        "name": "pineapple"
-    },
-    {
-        "image": "images/strawberry.png",
-        "name": "strawberry"
-    },
-    {
-        "image": "images/tomato.png",
-        "name": "tomato"
-    },
-    {
-        "image": "images/watermelon.png",
-        "name": "watermelon"
-    },
-    {
-        "image": "images/cherries.png",
-        "name": "cherries"
     }
+    //,
+    // {
+    //     "image": "images/lemon.png",
+    //     "name": "lemon"
+    // },
+    // {
+    //     "image": "images/orange.png",
+    //     "name": "orange"
+    // },
+    // {
+    //     "image": "images/pineapple.png",
+    //     "name": "pineapple"
+    // },
+    // {
+    //     "image": "images/strawberry.png",
+    //     "name": "strawberry"
+    // },
+    // {
+    //     "image": "images/tomato.png",
+    //     "name": "tomato"
+    // },
+    // {
+    //     "image": "images/watermelon.png",
+    //     "name": "watermelon"
+    // },
+    // {
+    //     "image": "images/cherries.png",
+    //     "name": "cherries"
+    // }
 ];
 
 console.log(cards.length)
@@ -112,6 +114,12 @@ function disableCards() {
   secondCard.removeEventListener("click", flipCard);
 
   resetBoard();
+  
+  pairsNum -= 1;
+  if (pairsNum == 0) {
+    const formattedTime = pad(hours) + ":" + pad(minutes) + ":" + pad(seconds);
+    setTimeout(gameOver("Gal", score, formattedTime), 1000);
+  }
 }
 
 function unflipCards() {
@@ -167,4 +175,23 @@ function updateTimer() {
 
 function pad(num) {
     return (num < 10) ? ("0" + num) : num;
+}
+
+function gameOver(username, score, time){
+
+  // Base URL of the game over page
+  const baseUrl = 'gameOver.html';
+
+  // Encode data to be included in the URL
+  const encodedUsername = encodeURIComponent(username);
+  const encodedScore = encodeURIComponent(score);
+  const encodedTime = encodeURIComponent(time);
+
+  // Construct the full URL with query parameters
+  const fullUrl = `${baseUrl}?username=${encodedUsername}&score=${encodedScore}&time=${encodedTime}`;
+
+  // Redirect to the game over page with user data
+  window.location.href = fullUrl;
+
+
 }
