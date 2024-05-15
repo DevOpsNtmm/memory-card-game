@@ -22,10 +22,11 @@ function getParameterByName(name, url) {
 }
 
 const username = getParameterByName('username');
-const pairsNum = getParameterByName('cardPairs');
+const cardPairs = getParameterByName('cardPairs');
+let numCards = (cardPairs)
 
 document.getElementById('welcomeMessage').innerText = 'Welcome, ' + username + '!';
-document.getElementById('cardPairsMessage').innerText = 'You have chosen ' + pairsNum + ' pairs of cards.';
+document.getElementById('cardPairsMessage').innerText = 'You have chosen ' + cardPairs;
 
 const cards = [
   {
@@ -165,7 +166,7 @@ function shuffleCards() {
 }
 
 function generateCards() {
-  for (let i = 0; i < pairsNum; i++) {
+  for (let i = 0; i < cardPairs; i++) {
     duplicatedCards.push(cards[i])
     duplicatedCards.push(cards[i])
   }
@@ -214,10 +215,10 @@ function disableCards() {
 
   resetBoard();
   
-  pairsNum -= 1;
-  if (pairsNum == 0) {
+  numCards--;
+  if (numCards == 0) {
     const formattedTime = pad(hours) + ":" + pad(minutes) + ":" + pad(seconds);
-    setTimeout(gameOver(username, score, formattedTime), 1000);
+    setTimeout(gameOver(username, score, formattedTime), 2000);
   }
 }
 
@@ -277,18 +278,14 @@ function pad(num) {
 }
 
 function gameOver(username, score, time){
-  console.log("hi")
-  // Base URL of the game over page
   const baseUrl = 'gameOver.html';
 
-  // Encode data to be included in the URL
   const encodedUsername = encodeURIComponent(username);
   const encodedScore = encodeURIComponent(score);
   const encodedTime = encodeURIComponent(time);
+  const encodedcardPairs = encodeURIComponent(cardPairs);
 
-  // Construct the full URL with query parameters
-  const fullUrl = `${baseUrl}?username=${encodedUsername}&score=${encodedScore}&time=${encodedTime}`;
-
-  // Redirect to the game over page with user data
+  // const fullUrl = `${baseUrl}?username=${encodedUsername}&score=${encodedScore}&time=${encodedTime}`;
+  const fullUrl = `${baseUrl}?username=${encodedUsername}&score=${encodedScore}&time=${encodedTime}&cardPairs=${encodedcardPairs}`;
   window.location.href = fullUrl;
 }
