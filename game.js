@@ -1,4 +1,5 @@
 const gridContainer = document.querySelector(".grid-container");
+const duplicatedCards = [];
 // cards
 let firstCard, secondCard;
 let lockBoard = false;
@@ -14,7 +15,7 @@ function getParameterByName(name, url) {
   if (!url) url = window.location.href;
   name = name.replace(/[\[\]]/g, '\\$&');
   var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-      results = regex.exec(url);
+  results = regex.exec(url);
   if (!results) return null;
   if (!results[2]) return '';
   return decodeURIComponent(results[2].replace(/\+/g, ' '));
@@ -23,49 +24,131 @@ function getParameterByName(name, url) {
 const username = getParameterByName('username');
 const pairsNum = getParameterByName('cardPairs');
 
-console.log(username, pairsNum)
-
 document.getElementById('welcomeMessage').innerText = 'Welcome, ' + username + '!';
 document.getElementById('cardPairsMessage').innerText = 'You have chosen ' + pairsNum + ' pairs of cards.';
 
-  const cards = [
-    {
-        "image": "images/chili.png",
-        "name": "chili"
-    },
-    {
-        "image": "images/grapes.png",
-        "name": "grapes"
-    }
-    //,
-    // {
-    //     "image": "images/lemon.png",
-    //     "name": "lemon"
-    // },
-    // {
-    //     "image": "images/orange.png",
-    //     "name": "orange"
-    // },
-    // {
-    //     "image": "images/pineapple.png",
-    //     "name": "pineapple"
-    // },
-    // {
-    //     "image": "images/strawberry.png",
-    //     "name": "strawberry"
-    // },
-    // {
-    //     "image": "images/tomato.png",
-    //     "name": "tomato"
-    // },
-    // {
-    //     "image": "images/watermelon.png",
-    //     "name": "watermelon"
-    // },
-    // {
-    //     "image": "images/cherries.png",
-    //     "name": "cherries"
-    // }
+const cards = [
+  {
+      "image": "images/dog-1.png",
+      "name": "dog-1"
+  },
+  {
+      "image": "images/dog-2.png",
+      "name": "dog-2"
+  }
+  ,
+  {
+      "image": "images/dog-3.png",
+      "name": "dog-3"
+  },
+  {
+      "image": "images/dog-4.png",
+      "name": "dog-4"
+  },
+  {
+      "image": "images/dog-5.png",
+      "name": "dog-5"
+  },
+  {
+      "image": "images/dog-6.png",
+      "name": "dog-6"
+  },
+  {
+      "image": "images/dog-7.png",
+      "name": "dog-7"
+  },
+  {
+      "image": "images/dog-8.png",
+      "name": "dog-8"
+  },
+  {
+      "image": "images/dog-9.png",
+      "name": "dog-9"
+  },
+  {
+      "image": "images/dog-10.png",
+      "name": "dog-10"
+  },
+  {
+      "image": "images/dog-11.png",
+      "name": "dog-11"
+  },
+  {
+      "image": "images/dog-12.png",
+      "name": "dog-12"
+  },
+  {
+      "image": "images/dog-13.png",
+      "name": "dog-13"
+  },
+  {
+      "image": "images/dog-14.png",
+      "name": "dog-14"
+  },
+  {
+      "image": "images/dog-15.png",
+      "name": "dog-15"
+  },
+  {
+      "image": "images/dog-16.png",
+      "name": "dog-16"
+  },
+  {
+      "image": "images/dog-17.png",
+      "name": "dog-17"
+  },
+  {
+      "image": "images/dog-18.png",
+      "name": "dog-18"
+  },
+  {
+      "image": "images/dog-19.png",
+      "name": "dog-19"
+  },
+  {
+      "image": "images/dog-20.gif",
+      "name": "dog-20"
+  },
+  {
+      "image": "images/dog-21.png",
+      "name": "dog-21"
+  },
+  {
+      "image": "images/dog-22.png",
+      "name": "dog-22"
+  },
+  {
+      "image": "images/dog-23.png",
+      "name": "dog-23"
+  },
+  {
+      "image": "images/dog-24.png",
+      "name": "dog-24"
+  },
+  {
+      "image": "images/dog-25.png",
+      "name": "dog-25"
+  },
+  {
+      "image": "images/dog-26.png",
+      "name": "dog-26"
+  },
+  {
+      "image": "images/dog-27.png",
+      "name": "dog-27"
+  },
+  {
+      "image": "images/dog-28.png",
+      "name": "dog-28"
+  },
+  {
+      "image": "images/dog-29.png",
+      "name": "dog-29"
+  },
+  {
+      "image": "images/dog-30.png",
+      "name": "dog-30"
+  }
 ];
 
 function shuffleCards() {
@@ -81,9 +164,12 @@ function shuffleCards() {
   }
 }
 
-
 function generateCards() {
-  for (let card of cards.concat(cards)) { // Duplicate the cards
+  for (let i = 0; i < pairsNum; i++) {
+    duplicatedCards.push(cards[i])
+    duplicatedCards.push(cards[i])
+  }
+  for (let card of duplicatedCards) {
     const cardElement = document.createElement("div");
     cardElement.classList.add("card");
     cardElement.setAttribute("data-name", card.name);
@@ -169,21 +255,21 @@ function stopTimer() {
   seconds = 0;
   minutes = 0;
   hours = 0;
-  updateTimer(); // Reset timer display
+  updateTimer();
 }
 
 function updateTimer() {
-    seconds++;
-    if (seconds >= 60) {
-        seconds = 0;
-        minutes++;
-        if (minutes >= 60) {
-            minutes = 0;
-            hours++;
-        }
+  seconds++;
+  if (seconds >= 60) {
+    seconds = 0;
+    minutes++;
+    if (minutes >= 60) {
+        minutes = 0;
+        hours++;
     }
-    const formattedTime = pad(hours) + ":" + pad(minutes) + ":" + pad(seconds);
-    document.getElementById("timer").innerText = formattedTime;
+  }
+  const formattedTime = pad(hours) + ":" + pad(minutes) + ":" + pad(seconds);
+  document.getElementById("timer").innerText = formattedTime;
 }
 
 function pad(num) {
@@ -205,6 +291,4 @@ function gameOver(username, score, time){
 
   // Redirect to the game over page with user data
   window.location.href = fullUrl;
-
-
 }
