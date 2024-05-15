@@ -1,3 +1,7 @@
+document.addEventListener('DOMContentLoaded', function() {
+  restart();
+});
+
 const gridContainer = document.querySelector(".grid-container");
 const duplicatedCards = [];
 // cards
@@ -152,16 +156,10 @@ const cards = [
   }
 ];
 
-function shuffleCards() {
-  let currentIndex = cards.length,
-    randomIndex,
-    temporaryValue;
-  while (currentIndex !== 0) {
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
-    temporaryValue = cards[currentIndex];
-    cards[currentIndex] = cards[randomIndex];
-    cards[randomIndex] = temporaryValue;
+function shuffleCards(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
   }
 }
 
@@ -170,6 +168,7 @@ function generateCards() {
     duplicatedCards.push(cards[i])
     duplicatedCards.push(cards[i])
   }
+  shuffleCards(duplicatedCards);
   for (let card of duplicatedCards) {
     const cardElement = document.createElement("div");
     cardElement.classList.add("card");
@@ -205,7 +204,6 @@ function flipCard() {
 
 function checkForMatch() {
   let isMatch = firstCard.dataset.name === secondCard.dataset.name;
-
   isMatch ? disableCards() : unflipCards();
 }
 
@@ -238,11 +236,13 @@ function resetBoard() {
 
 function restart() {
   resetBoard();
-  shuffleCards();
+  shuffleCards(cards);
   score = 0;
+  duplicatedCards.length = 0;
   document.querySelector(".score").textContent = score;
   gridContainer.innerHTML = "";
   generateCards();
+  console.log(pairsNum, duplicatedCards)
   stopTimer();
   startTimer();
 }
