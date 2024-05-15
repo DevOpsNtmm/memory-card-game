@@ -242,7 +242,6 @@ function restart() {
   document.querySelector(".score").textContent = score;
   gridContainer.innerHTML = "";
   generateCards();
-  console.log(pairsNum, duplicatedCards)
   stopTimer();
   startTimer();
 }
@@ -262,12 +261,12 @@ function stopTimer() {
 function updateTimer() {
   seconds++;
   if (seconds >= 60) {
-    seconds = 0;
-    minutes++;
-    if (minutes >= 60) {
-        minutes = 0;
-        hours++;
-    }
+      seconds = 0;
+      minutes++;
+      if (minutes >= 60) {
+          minutes = 0;
+          hours++;
+      }
   }
   const formattedTime = pad(hours) + ":" + pad(minutes) + ":" + pad(seconds);
   document.getElementById("timer").innerText = formattedTime;
@@ -285,7 +284,6 @@ function gameOver(username, score, time){
   const encodedTime = encodeURIComponent(time);
   const encodedcardPairs = encodeURIComponent(cardPairs);
 
-  // const fullUrl = `${baseUrl}?username=${encodedUsername}&score=${encodedScore}&time=${encodedTime}`;
   const fullUrl = `${baseUrl}?username=${encodedUsername}&score=${encodedScore}&time=${encodedTime}&cardPairs=${encodedcardPairs}`;
   window.location.href = fullUrl;
 }
