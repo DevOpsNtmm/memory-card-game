@@ -216,7 +216,9 @@ function disableCards() {
   numCards--;
   if (numCards == 0) {
     const formattedTime = pad(hours) + ":" + pad(minutes) + ":" + pad(seconds);
-    setTimeout(gameOver(username, score, formattedTime), 2000);
+    setTimeout(function() {
+      gameOver(username, score, formattedTime);
+  }, 1000);
   }
 }
 
