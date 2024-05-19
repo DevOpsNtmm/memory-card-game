@@ -30,7 +30,7 @@ const cardPairs = getParameterByName('cardPairs');
 let numCards = (cardPairs)
 
 document.getElementById('welcomeMessage').innerText = 'Welcome, ' + username + '!';
-document.getElementById('cardPairsMessage').innerText = 'You have chosen ' + cardPairs;
+document.getElementById('cardPairsMessage').innerText = 'You have chosen ' + cardPairs + ' cards';
 
 const cards = [
   {

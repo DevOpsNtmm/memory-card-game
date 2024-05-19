@@ -7,6 +7,10 @@
     align-items: center;
 }
 
+.main-content {
+    padding-top: 60px; /* Adjust this value according to the height of your navbar */
+}
+
 /* Make the search input flexible and longer */
 .input-group .form-control {
     flex: 1; 
